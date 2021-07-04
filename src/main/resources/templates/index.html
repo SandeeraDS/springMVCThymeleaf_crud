@@ -7,13 +7,42 @@
           href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
 </head>
 <body>
+<!--<div th:if="${session.runResult}" class="container p-5">-->
+<!--    <div class="row no-gutters">-->
+<!--        <div class="col-lg-5 col-md-12 ml-auto">-->
+<!--            <div class="alert alert-success fade show" role="alert">-->
+<!--                <button type="button" class="close" data-dismiss="alert" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--                <h4 class="alert-heading">Well done!</h4>-->
+<!--                <p>This is an alert within a column. The column can be made any size at different viewpoints.</p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="container my-2">
     <h4>Employee List</h4>
     <a th:href="@{/addEmployeeForm}" class="btn btn-primary btn-sm mb-3"> Add Employee</a>
     <!-- @ - reference content path of your application (root app) -->
+
+        <div th:if="${session.runResult}" class="container" id="success-alert">
+            <div class="alert alert-success text-center" role="alert">
+                <span th:text="${session.runResult}"></span>
+            </div>
+        </div>
+
     <table class="table table-striped table-responsive-md">
         <thead>
         <tr>
@@ -36,12 +65,53 @@
             <td th:text="${employee.getId()}"></td>
             <td th:text="${employee.getName()}"></td>
             <td th:text="${employee.getEmail()}"></td>
-            <th><a th:href="@{/updateEmployee/{id}(id=${employee.getId()})}" class="btn btn-primary">Update</a>
-                <a th:href="@{/deleteEmployee/{id}(id=${employee.getId()})}" class="btn btn-danger">Delete</a></th>
+            <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#exampleModalCenter" th:attr="data-target='#exampleModalCenter'+${employee.id}">
+                    Update
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" th:id="exampleModalCenter+${employee.id}" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Update Employee</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form th:action="@{/updateEmployeeNew}" method="POST">
+
+                                    <!-- Add hidden form field to handle update -->
+                                    <input type="hidden" th:value="*{employee.id}" th:name="id"/>
+                                    <label>Name</label>
+                                    <input type="text" th:value="*{employee.name}" th:name="name"
+                                           class="form-control mb-4 col-4">
+                                    <label>Email</label>
+                                    <input type="text" th:value="*{employee.email}" th:name="email"
+                                           class="form-control mb-4 col-6">
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </td>
         </tr>
+
         </tbody>
     </table>
-</div>
 
+</div>
 </body>
+
+
 </html>

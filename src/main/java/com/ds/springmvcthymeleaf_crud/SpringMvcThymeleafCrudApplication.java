@@ -25,7 +25,28 @@ public class SpringMvcThymeleafCrudApplication {
                 new EmployeeBean(0, "employee2", "employee2@gmail.com"),
                 new EmployeeBean(0, "employee3", "employee3@gmail.com"),
                 new EmployeeBean(0, "employee4", "employee4@gmail.com"),
+                new EmployeeBean(0, "employee5", "employee5@gmail.com"),
+                new EmployeeBean(0, "employee1", "employee1@gmail.com"),
+                new EmployeeBean(0, "employee2", "employee2@gmail.com"),
+                new EmployeeBean(0, "employee3", "employee3@gmail.com"),
+                new EmployeeBean(0, "employee4", "employee4@gmail.com"),
+                new EmployeeBean(0, "employee5", "employee5@gmail.com"),
+                new EmployeeBean(0, "employee1", "employee1@gmail.com"),
+                new EmployeeBean(0, "employee2", "employee2@gmail.com"),
+                new EmployeeBean(0, "employee3", "employee3@gmail.com"),
+                new EmployeeBean(0, "employee4", "employee4@gmail.com"),
+                new EmployeeBean(0, "employee5", "employee5@gmail.com"),
+                new EmployeeBean(0, "employee1", "employee1@gmail.com"),
+                new EmployeeBean(0, "employee2", "employee2@gmail.com"),
+                new EmployeeBean(0, "employee3", "employee3@gmail.com"),
+                new EmployeeBean(0, "employee4", "employee4@gmail.com"),
+                new EmployeeBean(0, "employee5", "employee5@gmail.com"),
+                new EmployeeBean(0, "employee1", "employee1@gmail.com"),
+                new EmployeeBean(0, "employee2", "employee2@gmail.com"),
+                new EmployeeBean(0, "employee3", "employee3@gmail.com"),
+                new EmployeeBean(0, "employee4", "employee4@gmail.com"),
                 new EmployeeBean(0, "employee5", "employee5@gmail.com")
+
         ).collect(Collectors.toList());
         employeeRepository.saveAll(users);
     }
